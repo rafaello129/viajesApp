@@ -2,6 +2,7 @@
 import { AppRouter } from "./infrastructure/routing/AppRouter";
 import { CustomAlert } from "./presentation/components/ui";
 import { useUiStore } from "./presentation/store/ui/useUiStore";
+import { Toaster } from "react-hot-toast";
 
 export const App = () => {
   const { error, success, setError, setSuccess } = useUiStore();
@@ -16,6 +17,8 @@ export const App = () => {
       )}
 
       <AppRouter />
+      <Toaster position="top-center" />
+
     </>
   );
 };

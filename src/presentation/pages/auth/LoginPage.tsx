@@ -1,9 +1,9 @@
+import React from "react";
+import { LoginForm } from "../../components/auth/LoginForm";
 
-export const LoginPage = () => {
-
+export const LoginPage: React.FC = () => {
   return (
-    <>
-      <h1>LoginPage</h1>      
-    </>
+        <LoginForm />
+  
   );
 };

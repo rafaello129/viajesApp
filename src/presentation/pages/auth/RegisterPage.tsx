@@ -1,9 +1,9 @@
+import React from 'react';
+import { RegisterForm } from '../../components/auth/RegisterForm';
 
-export const RegisterPage = () => {
-
+export const RegisterPage: React.FC = () => {
   return (
-    <>
-      <h1>RegisterPage</h1>      
-    </>
+   <RegisterForm />
+
   );
 };
