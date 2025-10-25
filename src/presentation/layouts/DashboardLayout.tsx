@@ -10,11 +10,11 @@ export const DashboardLayout: FC<Props> = ({ children }) => {
   const { isSidebarOpen, setIsSidebarOpen } = useUiStore();
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="min-h-screen flex bg-[#0A0A0A]">
       {/* Sidebar mobile overlay */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm md:hidden transition-opacity"
+          className="fixed inset-0 z-30 bg-black/70 backdrop-blur-sm md:hidden transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
@@ -29,7 +29,7 @@ export const DashboardLayout: FC<Props> = ({ children }) => {
         <TopMenu />
 
         {/* Main content */}
-        <main className="flex-1 p-4 md:p-6 overflow-auto bg-gray-50 m-0 md:mx-3 md:mb-3">
+        <main className="flex-1 p-4 md:p-6 overflow-auto bg-[#0A0A0A] m-0 md:mx-3 md:mb-3">
           <div className="max-w-7xl mx-auto">
             {children}
           </div>

@@ -1,83 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color palette - emerald/teal/cyan theme instead of purple */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.45 0.15 180);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.01 180);
-  --secondary-foreground: oklch(0.145 0 0);
-  --muted: oklch(0.96 0.005 180);
-  --muted-foreground: oklch(0.5 0.01 180);
-  --accent: oklch(0.96 0.01 180);
-  --accent-foreground: oklch(0.145 0 0);
+  /* ALAYA Brand Colors - Light Mode */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.05 0 0);
+  --card: oklch(0.98 0 0);
+  --card-foreground: oklch(0.05 0 0);
+  --popover: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.05 0 0);
+  
+  /* Gold Champagne (#D4AF37) - Premium accent */
+  --primary: oklch(0.7 0.12 85);
+  --primary-foreground: oklch(0.05 0 0);
+  
+  /* Midnight Blue (#1E3A5F) - Trust & Security */
+  --secondary: oklch(0.3 0.08 250);
+  --secondary-foreground: oklch(0.99 0 0);
+  
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.7 0.12 85);
+  --accent-foreground: oklch(0.05 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.92 0.005 180);
-  --input: oklch(0.88 0.01 180);
-  --ring: oklch(0.45 0.15 180);
-  --chart-1: oklch(0.55 0.18 180);
-  --chart-2: oklch(0.65 0.15 160);
-  --chart-3: oklch(0.45 0.12 200);
-  --chart-4: oklch(0.7 0.14 170);
-  --chart-5: oklch(0.5 0.16 190);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --border: oklch(0.16 0 0);
+  --input: oklch(0.16 0 0);
+  --ring: oklch(0.7 0.12 85);
+  
+  --chart-1: oklch(0.7 0.12 85);
+  --chart-2: oklch(0.3 0.08 250);
+  --chart-3: oklch(0.5 0.1 120);
+  --chart-4: oklch(0.6 0.14 85);
+  --chart-5: oklch(0.35 0.09 250);
+  
+  --radius: 0.75rem;
+  
+  --sidebar: oklch(0.04 0 0);
+  --sidebar-foreground: oklch(0.88 0 0);
+  --sidebar-primary: oklch(0.7 0.12 85);
+  --sidebar-primary-foreground: oklch(0.04 0 0);
+  --sidebar-accent: oklch(0.1 0 0);
+  --sidebar-accent-foreground: oklch(0.88 0 0);
+  --sidebar-border: oklch(0.16 0 0);
+  --sidebar-ring: oklch(0.7 0.12 85);
 }
 
 .dark {
-  /* Dark mode with teal/cyan accents */
-  --background: oklch(0.12 0.01 180);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.15 0.01 180);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.12 0.01 180);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.55 0.18 180);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.2 0.02 180);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.2 0.02 180);
-  --muted-foreground: oklch(0.6 0.02 180);
-  --accent: oklch(0.2 0.02 180);
-  --accent-foreground: oklch(0.98 0 0);
+  /* ALAYA Dark Mode - Deep Black (#0A0A0A) */
+  --background: oklch(0.04 0 0);
+  --foreground: oklch(0.99 0 0);
+  
+  /* Charcoal Gray (#1A1A1A) for elevated surfaces */
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(0.99 0 0);
+  --popover: oklch(0.04 0 0);
+  --popover-foreground: oklch(0.99 0 0);
+  
+  /* Gold Champagne (#D4AF37) - Premium accent */
+  --primary: oklch(0.7 0.12 85);
+  --primary-foreground: oklch(0.04 0 0);
+  
+  /* Midnight Blue (#1E3A5F) - Trust & Security */
+  --secondary: oklch(0.3 0.08 250);
+  --secondary-foreground: oklch(0.99 0 0);
+  
+  --muted: oklch(0.12 0 0);
+  --muted-foreground: oklch(0.88 0.01 0);
+  --accent: oklch(0.7 0.12 85);
+  --accent-foreground: oklch(0.04 0 0);
   --destructive: oklch(0.5 0.2 27);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.25 0.02 180);
-  --input: oklch(0.25 0.02 180);
-  --ring: oklch(0.55 0.18 180);
-  --chart-1: oklch(0.55 0.18 180);
-  --chart-2: oklch(0.65 0.15 160);
-  --chart-3: oklch(0.45 0.12 200);
-  --chart-4: oklch(0.7 0.14 170);
-  --chart-5: oklch(0.5 0.16 190);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  
+  /* Dark Gray (#2A2A2A) for subtle borders */
+  --border: oklch(0.16 0 0);
+  --input: oklch(0.16 0 0);
+  --ring: oklch(0.7 0.12 85);
+  
+  --chart-1: oklch(0.7 0.12 85);
+  --chart-2: oklch(0.3 0.08 250);
+  --chart-3: oklch(0.5 0.1 120);
+  --chart-4: oklch(0.6 0.14 85);
+  --chart-5: oklch(0.35 0.09 250);
+  
+  --sidebar: oklch(0.04 0 0);
+  --sidebar-foreground: oklch(0.88 0 0);
+  --sidebar-primary: oklch(0.7 0.12 85);
+  --sidebar-primary-foreground: oklch(0.04 0 0);
+  --sidebar-accent: oklch(0.1 0 0);
+  --sidebar-accent-foreground: oklch(0.88 0 0);
+  --sidebar-border: oklch(0.16 0 0);
+  --sidebar-ring: oklch(0.7 0.12 85);
 }
 
 @theme inline {
-  --font-sans: system-ui, -apple-system, sans-serif;
+  /* ALAYA Typography System */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
 
+  /* Color System */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -102,13 +126,20 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  
+  /* Border Radius System */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 12px);
 
-  /* Added fade-in animation for form entrance */
-  --animate-fade-in: fade-in 0.5s ease-out;
+  /* Animation System */
+  --animate-fade-in: fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-up: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-shimmer: shimmer 3s ease-in-out infinite;
+  
+  /* Sidebar Colors */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -123,25 +154,136 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-['Inter'] antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' auto;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Playfair_Display'] tracking-tight;
   }
 }
 
-/* Added grid pattern for decorative background */
+/* Luxury grid pattern with gold accent */
 .bg-grid-pattern {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(rgba(212, 175, 55, 0.04) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
 }
 
+/* Premium fade-in animation */
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Slide up animation */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer effect for luxury elements */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 3s infinite;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(212, 175, 55, 0.15) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Glass morphism effect */
+.glass-effect {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(42, 42, 42, 0.5);
+}
+
+/* Gradient background utilities */
+.bg-size-200 {
+  background-size: 200% 100%;
+}
+
+.bg-pos-0 {
+  background-position: 0% 0%;
+}
+
+.bg-pos-100 {
+  background-position: 100% 0%;
+}
+
+/* Custom scrollbar - ALAYA theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2A2A2A 0%, #1A1A1A 100%);
+  border-radius: 5px;
+  border: 2px solid #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #D4AF37 0%, #B8962F 100%);
+}
+
+/* Selection styles */
+::selection {
+  background-color: rgba(212, 175, 55, 0.3);
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: rgba(212, 175, 55, 0.3);
+  color: #FFFFFF;
+}
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.5);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+.no-js {
+  @apply hidden;
 }
