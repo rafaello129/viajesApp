@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapbox Demo - ALAYA</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0A0A0A;
+            color: #fff;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #D4AF37;
+        }
+        p {
+            color: #999;
+            margin-bottom: 2rem;
+        }
+        #map {
+            width: 100%;
+            height: 600px;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+        .warning {
+            background-color: #ef4444;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        .legend {
+            background-color: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .zone-color {
+            background-color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+        .marker-color {
+            background-color: #ef4444;
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ Interactive Map - Cancún, Mexico</h1>
+        <p>Demo of Mapbox GL JS integration with zones and markers</p>
+        
+        <div id="warning" class="warning">
+            ⚠️ Mapbox token not configured. Please add your token below.
+        </div>
+        
+        <div id="map"></div>
+        
+        <div class="legend">
+            <strong>Legend:</strong>
+            <div class="legend-item">
+                <div class="legend-color zone-color"></div>
+                <span>Zones (Blue polygons) - Click to see names</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color marker-color"></div>
+                <span>Markers (Red circles) - Points of interest</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ⚠️ WARNING: Never commit real Mapbox tokens to version control!
+        // This is a demo file for testing only. Replace the placeholder below with
+        // your actual token for local testing, but do NOT commit the real token.
+        // Get your token from: https://account.mapbox.com/
+        const MAPBOX_TOKEN = 'PLACEHOLDER_DO_NOT_COMMIT_REAL_TOKEN';
+        
+        if (!MAPBOX_TOKEN || MAPBOX_TOKEN.startsWith('PLACEHOLDER')) {
+            document.getElementById('warning').style.display = 'block';
+            document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#1A1A1A;border-radius:1rem;"><div style="text-align:center;"><h2 style="color:#ef4444;">Mapbox Token Required</h2><p style="color:#999;">Please add your Mapbox token in the script section</p></div></div>';
+        } else {
+            mapboxgl.accessToken = MAPBOX_TOKEN;
+
+            // Initialize map
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/dark-v11',
+                center: [-86.8515, 21.1619], // Cancún, Mexico
+                zoom: 12
+            });
+
+            // Mock zones data
+            const zones = [
+                {
+                    id: 1,
+                    name: 'Hotel Zone',
+                    coordinates: [
+                        [-86.8515, 21.1619],
+                        [-86.8400, 21.1619],
+                        [-86.8400, 21.1500],
+                        [-86.8515, 21.1500],
+                        [-86.8515, 21.1619]
+                    ]
+                },
+                {
+                    id: 2,
+                    name: 'Downtown Cancún',
+                    coordinates: [
+                        [-86.8300, 21.1700],
+                        [-86.8150, 21.1700],
+                        [-86.8150, 21.1550],
+                        [-86.8300, 21.1550],
+                        [-86.8300, 21.1700]
+                    ]
+                },
+                {
+                    id: 3,
+                    name: 'Puerto Cancún',
+                    coordinates: [
+                        [-86.8100, 21.1400],
+                        [-86.7950, 21.1400],
+                        [-86.7950, 21.1250],
+                        [-86.8100, 21.1250],
+                        [-86.8100, 21.1400]
+                    ]
+                }
+            ];
+
+            // Mock markers data
+            const markers = [
+                { id: 1, name: 'Cancún International Airport', lat: 21.0365, lng: -86.8770 },
+                { id: 2, name: 'Hotel Fiesta Americana', lat: 21.1426, lng: -86.8266 },
+                { id: 3, name: 'Plaza Las Américas', lat: 21.1469, lng: -86.8260 },
+                { id: 4, name: 'Interactive Aquarium', lat: 21.0925, lng: -86.7707 },
+                { id: 5, name: 'Mercado 28', lat: 21.1617, lng: -86.8270 }
+            ];
+
+            map.on('load', () => {
+                // Add zones
+                const geojsonFeatures = zones.map(zone => ({
+                    type: 'Feature',
+                    properties: { name: zone.name, id: zone.id },
+                    geometry: {
+                        type: 'Polygon',
+                        coordinates: [zone.coordinates]
+                    }
+                }));
+
+                map.addSource('zones', {
+                    type: 'geojson',
+                    data: {
+                        type: 'FeatureCollection',
+                        features: geojsonFeatures
+                    }
+                });
+
+                map.addLayer({
+                    id: 'zones-layer',
+                    type: 'fill',
+                    source: 'zones',
+                    paint: {
+                        'fill-color': '#3b82f6',
+                        'fill-opacity': 0.3
+                    }
+                });
+
+                map.addLayer({
+                    id: 'zones-outline',
+                    type: 'line',
+                    source: 'zones',
+                    paint: {
+                        'line-color': '#3b82f6',
+                        'line-width': 2
+                    }
+                });
+
+                // Add popup on click
+                map.on('click', 'zones-layer', (e) => {
+                    const coordinates = e.lngLat;
+                    const name = e.features[0].properties.name;
+
+                    new mapboxgl.Popup()
+                        .setLngLat(coordinates)
+                        .setHTML(`<div style="color: #000;"><strong>${name}</strong></div>`)
+                        .addTo(map);
+                });
+
+                // Change cursor on hover
+                map.on('mouseenter', 'zones-layer', () => {
+                    map.getCanvas().style.cursor = 'pointer';
+                });
+
+                map.on('mouseleave', 'zones-layer', () => {
+                    map.getCanvas().style.cursor = '';
+                });
+
+                // Add markers
+                markers.forEach(marker => {
+                    const el = document.createElement('div');
+                    el.style.width = '30px';
+                    el.style.height = '30px';
+                    el.style.borderRadius = '50%';
+                    el.style.backgroundColor = '#ef4444';
+                    el.style.border = '2px solid #fff';
+                    el.style.cursor = 'pointer';
+                    el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
+
+                    const popup = new mapboxgl.Popup({ offset: 25 })
+                        .setHTML(`<div style="color: #000;"><strong>${marker.name}</strong></div>`);
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat([marker.lng, marker.lat])
+                        .setPopup(popup)
+                        .addTo(map);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

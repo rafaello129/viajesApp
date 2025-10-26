@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useUiStore } from '../../../store/ui/useUiStore';
-import { FiX, FiMapPin } from 'react-icons/fi';
+import { FiX, FiMapPin, FiMap } from 'react-icons/fi';
 import { HiHome, HiUsers } from 'react-icons/hi2';
 
 export const Sidebar = () => {
@@ -12,6 +12,11 @@ export const Sidebar = () => {
       path: '/dashboard/home',
       icon: HiHome,
       label: 'Inicio',
+    },
+    {
+      path: '/dashboard/map',
+      icon: FiMap,
+      label: 'Mapa',
     },
     {
       path: '/dashboard/users',
