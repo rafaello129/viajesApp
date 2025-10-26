@@ -1,4 +1,4 @@
-import type { Zone, Marker } from '../entities';
+import type { Zone, Marker, UserLocation, MapBounds, MapFilters } from '../entities';
 
 export interface MapData {
   zones: Zone[];
@@ -6,5 +6,9 @@ export interface MapData {
 }
 
 export interface IMapRepository {
-  getMapData(): Promise<MapData>;
+  getMapData(userLocation?: UserLocation, bounds?: MapBounds, filters?: MapFilters): Promise<MapData>;
+  getNearbyMarkers(userLocation: UserLocation, radius: number): Promise<Marker[]>;
+  getMarkerById(id: number): Promise<Marker>;
+  getZoneById(id: number): Promise<Zone>;
+  toggleFavoriteMarker(markerId: number): Promise<boolean>;
 }
