@@ -98,10 +98,13 @@
     </div>
 
     <script>
-        // Configure your Mapbox token here
-        const MAPBOX_TOKEN = 'your_mapbox_token_here';
+        // ⚠️ WARNING: Never commit real Mapbox tokens to version control!
+        // This is a demo file for testing only. Replace the placeholder below with
+        // your actual token for local testing, but do NOT commit the real token.
+        // Get your token from: https://account.mapbox.com/
+        const MAPBOX_TOKEN = 'PLACEHOLDER_DO_NOT_COMMIT_REAL_TOKEN';
         
-        if (!MAPBOX_TOKEN || MAPBOX_TOKEN === 'your_mapbox_token_here') {
+        if (!MAPBOX_TOKEN || MAPBOX_TOKEN.startsWith('PLACEHOLDER')) {
             document.getElementById('warning').style.display = 'block';
             document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#1A1A1A;border-radius:1rem;"><div style="text-align:center;"><h2 style="color:#ef4444;">Mapbox Token Required</h2><p style="color:#999;">Please add your Mapbox token in the script section</p></div></div>';
         } else {
