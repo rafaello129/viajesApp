@@ -83,7 +83,7 @@ interface MapState {
 const DEFAULT_CENTER: [number, number] = [-86.8515, 21.1619]; // Cancún
 const DEFAULT_ZOOM = 13;
 const DEFAULT_PROXIMITY: ProximitySettings = {
-  nearbyRadius: 500,
+  nearbyRadius: 1000, // 1km radius for better proximity detection
   loadRadius: 5000,
   autoRefreshInterval: 30000,
 };

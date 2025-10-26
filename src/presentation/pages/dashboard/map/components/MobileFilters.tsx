@@ -29,7 +29,7 @@ export const MobileFilters: React.FC<MobileFiltersProps> = ({
   };
 
   return (
-    <div className="flex-shrink-0 bg-[#1A1A1A] border-b border-[#2A2A2A] animate-slide-down max-h-[40vh] overflow-y-auto">
+    <div className="flex-shrink-0 bg-[#1A1A1A] border-b border-[#2A2A2A] animate-slide-down max-h-[40vh] overflow-y-auto relative z-20">
       <div className="p-4 space-y-4">
         {/* Show Nearby Toggle */}
         <div className="flex items-center justify-between">

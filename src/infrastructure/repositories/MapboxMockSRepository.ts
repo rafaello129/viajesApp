@@ -35,7 +35,7 @@ export class MapboxMockRepository implements IMapRepository {
       markers = markers.map((marker) => ({
         ...marker,
         distanceFromUser: getMarkerDistance(userLocation, marker),
-        isNearby: getMarkerDistance(userLocation, marker) <= 500, // 500m radius
+        isNearby: getMarkerDistance(userLocation, marker) <= 1000, // 1km radius for better proximity detection
       }));
 
       // Sort by distance

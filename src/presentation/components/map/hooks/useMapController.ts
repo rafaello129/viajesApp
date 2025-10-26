@@ -44,6 +44,7 @@ export const useMapController = ({
   const lastSelectedMarkerId = useRef<number | null>(null);
   const isUserInteracting = useRef(false);
   const userInteractionTimeout = useRef<any>(null);
+  const lastFollowUserLocation = useRef<boolean>(followUserLocation);
 
   // Función para actualizar marcador de usuario
   const updateUserMarker = (map: mapboxgl.Map, location: UserLocation) => {
@@ -359,10 +360,14 @@ export const useMapController = ({
     if (userLocation && showUserLocation) {
       updateUserMarker(map, userLocation);
 
+      // Check if followUserLocation was just enabled
+      const followJustEnabled = followUserLocation && !lastFollowUserLocation.current;
+      
       // Follow user if enabled
       if (followUserLocation && !isUserInteracting.current) {
         const lastPos = lastUserPosition.current;
-        if (!lastPos || 
+        // Center immediately if just enabled OR if position changed significantly
+        if (followJustEnabled || !lastPos || 
             Math.abs(lastPos.lat - userLocation.lat) > 0.0001 ||
             Math.abs(lastPos.lng - userLocation.lng) > 0.0001) {
           
@@ -375,6 +380,9 @@ export const useMapController = ({
           lastUserPosition.current = { lat: userLocation.lat, lng: userLocation.lng };
         }
       }
+      
+      // Update the ref for next comparison
+      lastFollowUserLocation.current = followUserLocation;
     }
 
     // Update markers
